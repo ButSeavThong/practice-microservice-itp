@@ -1,0 +1,67 @@
+server:
+  port: 9991
+spring:
+  application:
+    name: bff-admin
+  profiles:
+    active: dev
+  config:
+    import: optional:configserver:http://localhost:8888
+  cloud:
+    gateway:
+      server:
+        webflux:
+          discovery:
+            locator:
+              enabled: true
+              lower-case-service-id: true
+          default-filters:
+             - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin Access-Control-Request-Headers
+             - SaveSession
+             - TokenRelay=
+
+          routes:
+            - id: admin-frontend
+              uri: http://localhost:3001
+              predicates:
+                - Path=/**
+              filters:
+                # Token Relay - forwards access token to downstream service
+#                - TokenRelay=
+
+  # OAuth2 Client Configuration
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:9090
+      client:
+        provider:
+          admin-client:
+            issuer-uri: http://localhost:9090
+        registration:
+          admin-client:
+            provider: admin-client
+            client-id: admin-client
+            client-secret: qwerqwer
+            redirect-uri: http://localhost:9991/login/oauth2/code/admin-client
+            authorization-grant-type:
+              - authorization_code
+            scope:
+              - openid # Auto issue access token
+              - profile # Get profile
+              - email # Get email
+
+
+
+  # this alternative if eureka cannot resolve service's hostname for discovery concept
+#eureka:
+#  instance:
+#    instance-id: ${spring.application.name}
+#    prefer-ip-address: true
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+    org.springframework.security.oauth2: DEBUG
+    org.springframework.cloud.gateway: DEBUG

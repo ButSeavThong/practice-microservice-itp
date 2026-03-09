@@ -1,0 +1,55 @@
+spring:
+  application:
+    name: account-query-service
+
+  liquibase:
+    enabled: true
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:16852/db_account_query
+    user: itpusr
+    password: itp@168
+
+  r2dbc:
+    url: r2dbc:postgresql://localhost:16852/db_account_query
+    username: itpusr
+    password: itp@168
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: false
+
+  profiles:
+    active: dev
+  config:
+    import: optional:configserver:http://localhost:8888
+
+axon:
+  axonserver:
+    enabled: false
+  serializer:
+    general: jackson
+    events: jackson
+    messages: jackson
+
+
+#  security:
+#    oauth2:
+#      resourceserver:
+#        jwt:
+#          issuer-uri: http://localhost:9090
+
+
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#    show-sql: false
+#    properties:
+#      hibernate:
+#        format_sql: true
+server:
+  port: 20264

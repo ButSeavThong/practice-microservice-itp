@@ -1,0 +1,14 @@
+include ':microservices:account-service'
+include ':microservices:customer-service'
+include ':microservices:pipeline-service'
+include ':microservices:account-query-service'
+
+
+include ':spring-cloud:bff-admin'
+include ':spring-cloud:front-bff'
+include ':spring-cloud:config-server'
+include ':spring-cloud:eurekaserver'
+include ':spring-cloud:gateway-server'
+include ':spring-cloud:iam-service'
+
+include ':common'

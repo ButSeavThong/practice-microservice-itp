@@ -1,0 +1,30 @@
+
+server:
+  port: 8888
+spring:
+  application:
+    name: config-server
+  profiles:
+    active: git, vault
+  cloud:
+    config:
+      server:
+        vault:
+          host: localhost
+          port: 8200
+          scheme: http
+          authentication: TOKEN
+          token: myroot
+          kv-version: 2
+          backend: secret
+          profile-separator: /
+        git:
+          uri: https://gitlab.com/thongg-group/itp-config-repository.git
+          username: ${GL_USER}
+          password: ${GL_TOKEN}
+          default-label: main
+          search-paths: "/**"
+        native:
+          search-locations:
+            - file:D:\ITP_SPRING_MICROSERVICE\itp-microservice\itp-config-repo\
+            - file:D:\ITP_SPRING_MICROSERVICE\itp-microservice\itp-config-repo\{application}\

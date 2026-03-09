@@ -1,0 +1,5 @@
+service:
+  info: ITP - Microservice
+  tag: itp
+  servion: 1.0
+  kamkor: alway dropped

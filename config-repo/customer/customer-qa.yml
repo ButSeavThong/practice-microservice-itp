@@ -1,0 +1,3 @@
+service:
+  name: Account Service ( QA Qaulity Assurance  )
+  version: 1.0-pre-release

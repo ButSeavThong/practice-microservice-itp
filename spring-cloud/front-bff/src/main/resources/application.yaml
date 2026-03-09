@@ -1,0 +1,64 @@
+server:
+  port: 9990
+spring:
+  application:
+    name: front-bff
+  profiles:
+    active: dev
+  config:
+    import: optional:configserver:http://localhost:8888
+  cloud:
+    gateway:
+      server:
+        webflux:
+          discovery:
+            locator:
+              enabled: true
+              lower-case-service-id: true
+          routes:
+            - id: e-banking
+              uri: http://localhost:3000
+              predicates:
+                - Path=/**
+          default-filters:
+            - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin Access-Control-Request-Headers
+            - SaveSession
+            - TokenRelay=
+
+
+  # OAuth2 Client Configuration
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:9090
+      client:
+        provider:
+          bff-client:
+            issuer-uri: http://localhost:9090
+        registration:
+          bff-client:
+            provider: bff-client
+            client-id: bff-client
+            client-secret: qwerqwer
+            redirect-uri: http://localhost:9990/login/oauth2/code/bff-client
+            authorization-grant-type:
+              - authorization_code
+            scope:
+              - openid # Auto issue access token
+              - profile # Get profile
+              - email # Get email
+
+
+
+  # this alternative if eureka cannot resolve service's hostname for discovery concept
+#eureka:
+#  instance:
+#    instance-id: ${spring.application.name}
+#    prefer-ip-address: true
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+    org.springframework.security.oauth2: DEBUG
+    org.springframework.cloud.gateway: DEBUG

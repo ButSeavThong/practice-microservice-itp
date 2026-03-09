@@ -1,0 +1,3 @@
+service:
+  name: Customer Service ( Dev )
+  version: 1.0-snapshot
