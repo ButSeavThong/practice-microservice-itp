@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/common/core-banking.common.main.iml" filepath="$PROJECT_DIR$/.idea/modules/common/core-banking.common.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/microservices/account-query-service/core-banking.microservices.account-query-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/microservices/account-query-service/core-banking.microservices.account-query-service.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/microservices/account-service/core-banking.microservices.account-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/microservices/account-service/core-banking.microservices.account-service.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/microservices/customer-service/core-banking.microservices.customer-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/microservices/customer-service/core-banking.microservices.customer-service.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/spring-cloud/iam-service/core-banking.spring-cloud.iam-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/spring-cloud/iam-service/core-banking.spring-cloud.iam-service.main.iml" />

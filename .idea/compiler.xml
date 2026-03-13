@@ -12,7 +12,6 @@
         <module name="core-banking.microservices.pipeline-service.main" />
         <module name="core-banking.spring-cloud.front-bff.main" />
         <module name="core-banking.common.main" />
-        <module name="core-banking.microservices.account-query-service.main" />
       </profile>
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
@@ -23,6 +22,7 @@
         </processorPath>
         <module name="core-banking.microservices.account-service.main" />
         <module name="core-banking.microservices.customer-service.main" />
+        <module name="core-banking.microservices.account-query-service.main" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="21" />

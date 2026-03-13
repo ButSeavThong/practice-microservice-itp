@@ -2,7 +2,7 @@ package com.thongfazon.account.data.entity;
 
 
 import com.thong.common.domain.valueobject.AccountStatus;
-import com.thongfazon.account.domain.valueobject.Currency;
+import com.thong.common.domain.valueobject.Currency;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;

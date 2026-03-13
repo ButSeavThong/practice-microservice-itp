@@ -8,20 +8,21 @@ spring:
     url: jdbc:postgresql://localhost:16852/db_account_query
     user: itpusr
     password: itp@168
+    default-schema: public
 
   r2dbc:
     url: r2dbc:postgresql://localhost:16852/db_account_query
     username: itpusr
     password: itp@168
 
-  jpa:
-    hibernate:
-      ddl-auto: none
-    show-sql: false
-    open-in-view: false
-    properties:
-      hibernate:
-        format_sql: false
+#  jpa:
+#    hibernate:
+#      ddl-auto: none
+#    show-sql: false
+#    open-in-view: false
+#    properties:
+#      hibernate:
+#        format_sql: false
 
   profiles:
     active: dev
@@ -36,20 +37,22 @@ axon:
     events: jackson
     messages: jackson
 
+  kafka:
+    bootstrap-servers: localhost:29092,localhost:29094,localhost:29096
+    default-topic: Axon.Account.Events
+    client-id: kafka-axon-account-query        # unique client-id for query side
+    message-converter-mode: default
+    properties:
+      security.protocol: PLAINTEXT
+    consumer:
+      event-processor-mode: tracking           # must match registerTrackingEventProcessor
+      group-id: account-query-consumer-group   # explicit group-id for offset tracking
 
-#  security:
-#    oauth2:
-#      resourceserver:
-#        jwt:
-#          issuer-uri: http://localhost:9090
-
-
-#  jpa:
-#    hibernate:
-#      ddl-auto: update
-#    show-sql: false
-#    properties:
-#      hibernate:
-#        format_sql: true
+      # FIX for Error 1: explicitly list topics the consumer subscribes to.
+      # Without this, StreamableKafkaMessageSource creates a FetchEventsTask
+      # but never calls consumer.subscribe(), causing the
+      # "Consumer is not subscribed to any topics" IllegalStateException.
+      topics:
+        - Axon.Account.Events
 server:
   port: 20264

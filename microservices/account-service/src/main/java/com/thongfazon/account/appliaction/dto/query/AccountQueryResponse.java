@@ -1,10 +1,6 @@
 package com.thongfazon.account.appliaction.dto.query;
 
-import com.thong.common.domain.valueobject.CustomerId;
-import com.thong.common.domain.valueobject.AccountStatus;
-import com.thong.common.domain.valueobject.AccountTypeCode;
-import com.thongfazon.account.domain.valueobject.BranchId;
-import com.thongfazon.account.domain.valueobject.Currency;
+import com.thong.common.domain.valueobject.*;
 import lombok.Builder;
 
 import java.math.BigDecimal;

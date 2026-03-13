@@ -1,21 +1,17 @@
 package com.thongfazon.account.domain.aggregate;
 
 
-import com.thong.common.domain.valueobject.AccountId;
-import com.thong.common.domain.valueobject.AccountStatus;
-import com.thong.common.domain.valueobject.AccountTypeCode;
-import com.thong.common.domain.valueobject.CustomerId;
+import com.thong.common.domain.event.AccountCreatedEvent;
+import com.thong.common.domain.valueobject.*;
 import com.thongfazon.account.domain.command.CreateAccountCommand;
 import com.thongfazon.account.domain.command.DepositMoneyCommand;
 import com.thongfazon.account.domain.command.FreezeAccountCommand;
 import com.thongfazon.account.domain.command.WithdrawMoneyCommand;
-import com.thongfazon.account.domain.event.AccountCreatedEvent;
 import com.thongfazon.account.domain.event.MoneyDepositedEvent;
 import com.thongfazon.account.domain.event.MoneyWithdrawnEvent;
 import com.thongfazon.account.domain.event.AccountFrozeEvent;
 import com.thongfazon.account.domain.exception.AccountDomainException;
 import com.thongfazon.account.domain.validate.AccountValidate;
-import com.thongfazon.account.domain.valueobject.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
