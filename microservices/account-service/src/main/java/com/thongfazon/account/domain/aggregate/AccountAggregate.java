@@ -181,7 +181,7 @@ public class AccountAggregate {
         }
 
 
-    private void validateAccountIsFreeze(){
+        private void validateAccountIsFreeze(){
         if (this.accountStatus == AccountStatus.CLOSED) {
             throw new AccountDomainException("Only ACTIVE accounts can be frozen. Current status: " + this.accountStatus);
         }
@@ -189,8 +189,8 @@ public class AccountAggregate {
             throw new AccountDomainException("Can not freeze this account! Account is freeze");
         }
     }
-    @CommandHandler
-    public void handle(FreezeAccountCommand command){
+        @CommandHandler
+        public void handle(FreezeAccountCommand command){
         log.info("Handling FreezeAccountCommand for accountId = {}", command.accountId().value());
         validateAccountIsFreeze();
         AggregateLifecycle.apply(new AccountFrozeEvent(
@@ -204,8 +204,8 @@ public class AccountAggregate {
         ));
     }
 
-    @EventSourcingHandler
-    public void on(AccountFrozeEvent event){
+        @EventSourcingHandler
+        public void on(AccountFrozeEvent event){
         this.accountStatus = event.newStatus();
         this.updatedAt = event.createdAt();
         this.updatedBy = event.requestBy();
